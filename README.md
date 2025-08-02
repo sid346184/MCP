@@ -1,11 +1,31 @@
-# MCP SERVER
+🧠 LangGraph Multi-Server Reactive Agent
+This project demonstrates how to build a React-style AI agent that uses LangChain, LangGraph, and Groq's LLaMA 3 model, connected to multiple tools (servers) via MultiServerMCPClient.
 
-It is the server from which the MCP Client takes the input, it can be an api or any other thing that you can imagine.
+📌 Overview
+Uses LangChain MCP (MultiServerMCPClient) to connect to different tools.
 
-# MCP Client
+Implements a React Agent with LangGraph's create_react_agent.
 
-It is used to get input from server and show output.
+Powered by Groq’s blazing fast LLaMA 3-70B for inference.
 
-# MCP Protocol
+Integrates both:
 
-Both MCP server and client are connected with MCP Protocol.
+A local math server via stdio transport
+
+A weather server over HTTP
+
+🏗️ Architecture
+```
+             +----------------------+
+             |  Groq LLaMA 3 Model  |
+             +----------------------+
+                       |
+         +-------------+----------------+
+         |                              |
+  +------+-----+                +-------+------+
+  |  Math Tool  |               | Weather Tool |
+  | (stdio)     |               | (HTTP MCP)   |
+  +-------------+               +--------------+
+```
+
+Currently it is not connected to any weather api. Contributions are welcome ;)
